@@ -44,3 +44,4 @@ export default Parent;
 //A referencia importa quando alguém compara ou depende da identidade dela
 
 //custo de comparação 
+// evita custo de renderização desnecessária dos componentes filhos.
