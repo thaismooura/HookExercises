@@ -1,47 +1,56 @@
-"use client"
-import React, { useState, useCallback } from "react";
+"use client";
+import React, { useState, useCallback, useEffect } from "react";
+
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+}
 
 export function Parent() {
-  const [count, setCount] = useState(0);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [userProduct, setUserProduct] = useState<Product>();
 
-  const onChange = useCallback(() => {
-    console.log("oi");
+  useEffect(() => {
+    async function GetProduct() {
+      const response = await fetch("https://fakestoreapi.com/products");
+      const message: Product[] = await response.json();
+      setProducts(message);
+    }
+    GetProduct();
   }, []);
 
-  console.log("Parent renderizou");
+  const handleOnChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) =>
+      setUserProduct(products.find((p) => p.id === Number(e.target.value))),
+    [products],
+  );
+
+  // const handleOnChange = (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) =>
+  //     setUserProduct(products.find((p) => p.id === Number(e.target.value)));
+
+  console.log("Parent being called");
 
   return (
-    <>
-      <button onClick={() => setCount(c => c + 1)}>
-        Increment count: {count}
-      </button>
-
-      <Input onChange={onChange} />
-    </>
+    <div>
+      <label>Type the product id</label>
+      <Input onChange={handleOnChange}></Input>
+      <div>{userProduct?.title}</div>
+    </div>
   );
 }
 
-type InputProps = {
-  onChange: () => void;
-};
+export interface InputProps {
+  onChange: (e: React.ChangeEvent<HTMLInputElement, HTMLInputElement>) => void;
+}
 
 const Input = React.memo(({ onChange }: InputProps) => {
-  console.log("Input renderizou");
+  console.log("Input is being called");
 
-  return (
-    <input
-      type="text"
-      placeholder="Type something"
-      onChange={onChange}
-    />
-  );
+  return <input onChange={onChange} type="text"></input>;
 });
 
 export default Parent;
 
-//onChange NÃO muda (graças ao useCallback)
-
-//A referencia importa quando alguém compara ou depende da identidade dela
-
-//custo de comparação 
-// evita custo de renderização desnecessária dos componentes filhos.
+//custo de comparação
+// evita custo de renderização desnecessária dos componentes filhos
