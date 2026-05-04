@@ -6,7 +6,7 @@ export function Credentials() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
 
-  useEffect(() => console.log(name));
+  useEffect(() => console.log(name), [name]);
 
   return (
     <UserContainer>
