@@ -6,6 +6,7 @@ const hooks = [
   { name: "useRef", path: "/hooks/useRef" },
   { name: "useMemo", path: "/hooks/useMemo" },
   { name: "useCallback", path: "/hooks/useCallback" },
+  { name: "useContext", path: "/hooks/useContext" },
 ];
 
 export default function HooksMenu() {
