@@ -25,6 +25,7 @@ export default function HooksMenu() {
             </Link>
           </li>
         ))}
+         <h1>Redux Menu</h1>
         {redux.map((item) => (
           <li key={item.name} style={{ margin: "12px 0" }}>
             <Link href={item.path} style={{ fontSize: 20, color: "#0070f3" }}>
