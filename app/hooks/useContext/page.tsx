@@ -1,9 +1,11 @@
-import {ThemeContextProvider, Header} from "./useContext"
+import { ThemeContextProvider, Header, Card } from "./useContext";
 
-export default function UseContext(){
-   return (
+export default function UseContext() {
+  return (
     <ThemeContextProvider>
-      <Header />
+      <Header>
+        <Card />
+      </Header>
     </ThemeContextProvider>
   );
 }

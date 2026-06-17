@@ -9,6 +9,10 @@ const hooks = [
   { name: "useContext", path: "/hooks/useContext" },
 ];
 
+const redux = [
+  { name: "Redux Counter", path: "/redux/state/counter" },
+];
+
 export default function HooksMenu() {
   return (
     <div style={{ padding: 32 }}>
@@ -18,6 +22,13 @@ export default function HooksMenu() {
           <li key={hook.name} style={{ margin: "12px 0" }}>
             <Link href={hook.path} style={{ fontSize: 20, color: "#0070f3" }}>
               {hook.name}
+            </Link>
+          </li>
+        ))}
+        {redux.map((item) => (
+          <li key={item.name} style={{ margin: "12px 0" }}>
+            <Link href={item.path} style={{ fontSize: 20, color: "#0070f3" }}>
+              {item.name}
             </Link>
           </li>
         ))}

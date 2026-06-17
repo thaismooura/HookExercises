@@ -16,26 +16,38 @@ export function ThemeContextProvider({
   const [theme, setTheme] = useState("lightTheme");
 
   function toggleTheme() {
-    setTheme(theme === "lightTheme" ? "darkTheme" : "lightTheme");
+    setTheme((prev) => (prev === "lightTheme" ? "darkTheme" : "lightTheme"));
   }
+
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
 }
-
-export function Header() {
+export function Header({ children }: { children: React.ReactNode }) {
   const context = useContext(ThemeContext);
 
   return (
-    <div
-      style={{
-        backgroundColor: context?.theme === "lightTheme" ? "lightblue" : "gray",
-      }}
-    >
-      <h1>This is the header</h1>
-      <button onClick={context?.toggleTheme}>Change theme</button>
+    <>
+      <div
+        style={{
+          backgroundColor:
+            context?.theme === "lightTheme" ? "lightcoral" : "gray",
+        }}
+      >
+        <h1>Hi I'm the Header</h1>
+        {children}
+      </div>
+      <button onClick={context?.toggleTheme}>Toggle theme</button>
+    </>
+  );
+}
+
+export function Card() {
+  return (
+    <div>
+      <input placeholder="type something"></input>
     </div>
   );
 }
