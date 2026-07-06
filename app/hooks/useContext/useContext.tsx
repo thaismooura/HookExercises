@@ -44,10 +44,18 @@ export function Header({ children }: { children: React.ReactNode }) {
   );
 }
 
+
 export function Card() {
+  const context = useContext(ThemeContext);
+
   return (
-    <div>
-      <input placeholder="type something"></input>
+    <div
+      style={{
+        backgroundColor:
+          context?.theme === "lightTheme" ? "white" : "black",
+      }}
+    >
+      <input placeholder="type something" />
     </div>
   );
 }
