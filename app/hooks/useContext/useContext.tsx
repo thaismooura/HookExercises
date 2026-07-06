@@ -1,10 +1,10 @@
 "use client";
 import React, { createContext, useContext, useState } from "react";
 
-type ThemeContextType = {
+interface ThemeContextType {
   theme: string;
   toggleTheme: () => void;
-};
+}
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
